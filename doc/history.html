@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hash和history实现路由跳转</title>
+</head>
+
+<body>
+    <a onclick="go('/home')">首页</a>
+    <a onclick="go('/about')">关于</a>
+    <div id="html"></div>
+    <script>
+        function go(pathname) {
+            history.pushState({}, '', pathname);
+            html.innerHTML = pathname;
+        }
+        // 为避免点击浏览器的前进后退按钮 路由不见，可以加多一层
+        window.addEventListener('popstate', () => {
+            go(location.pathname);
+        });
+    </script>
+</body>
+
+</html>
